@@ -18,7 +18,16 @@
         abc(10, 20, (a, b) => {
             console.log(a, b);
         });
-
+        function buy(callback) {
+            if (typeof callback === 'function') {
+                callback("薯片", "菊花茶");
+            }
+        }
+        buy((a, b) => {
+            console.log("我在吃" + a);
+            console.log("我在喝" + b);
+        }
+        );
     </script>
 </body>
 
