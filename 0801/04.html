@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img data-src="-16&8.jpg">
+    <img data-src="-16&8.jpg">
+    <img data-src="-16&8.jpg">
+    <img data-src="-16&8.jpg">
+    <img data-src="-16&8.jpg">
+    <img data-src="-16&8.jpg">
+    <img data-src="-16&8.jpg">
+    <img data-src="-16&8.jpg">
+    <img data-src="-16&8.jpg">
+    <img data-src="-16&8.jpg">
+    <img data-src="-16&8.jpg">
+    <script>
+        // 图片懒加载
+        var imgs = document.querySelectorAll('img');
+        var imgArr = [];
+        for (var i = 0; i < imgs.length; i++) {
+            imgArr.push(imgs[i]);
+        }
+        var imgArrLength = imgArr.length;
+        var imgArrIndex = 0;
+        var imgArrTimer = setInterval(function () {
+            if (imgArrIndex >= imgArrLength) {
+                clearInterval(imgArrTimer);
+            }
+            if (imgArr[imgArrIndex].getBoundingClientRect().top < document.documentElement.clientHeight) {
+                imgArr[imgArrIndex].src = imgArr[imgArrIndex].getAttribute('data-src');
+                imgArrIndex++;
+            }
+        }, 100);
+
+
+    </script>
+</body>
+</html>

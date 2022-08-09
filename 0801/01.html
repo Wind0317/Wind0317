@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS0801</title>
+</head>
+
+<body>
+    <script>
+        // 一张纸的厚度是0.0001米，将纸对折，对折多少次厚度超过珠峰高度8848米。
+        var height = 8848;
+        var count = 0; 
+        var paper = 0.0001;
+        while (paper < height) {
+            paper = paper * 2;
+            count++;
+        }
+        console.log(count);
+
+        //打印出100以内的素数。
+        var count = 0;
+        for (var i = 2; i < 100; i++) {
+            for (var j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    break;
+                }
+            }
+            if (j == i) {
+                count++;
+                console.log(i);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

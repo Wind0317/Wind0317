@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript数组基础</title>
+</head>
+
+<body>
+    <script>
+        var arr = [11, 23, 56, 78, 90, 45, 22, 31, 66];
+        var newarr = [];
+        while (arr.length > 0) {
+            var max = arr[arr.length - 1];
+            for (var i = arr.length - 2; i >= 0; i--) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            arr.splice(arr.indexOf(max), 1);
+            newarr.push(max);
+        }
+        console.log(newarr);
+    </script>
+</body>
+
+</html>

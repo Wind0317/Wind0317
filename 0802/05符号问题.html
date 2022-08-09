@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        括号里面只能放加或减，如果要使等式成立，括号里面应该放什么运算符
+        12（+）34（-）56（+）78（-）9 = 59
+        */
+        for (let i = -1; i <= 1; i += 2) {
+            for (let j = -1; j <= 1; j += 2) {
+                for (let k = -1; k <= 1; k += 2) {
+                    for (let l = -1; l <= 1; l += 2) {
+                        if (12 + 34 * i + 56 * j + 78 * k + 9 * l == 59) {
+                            console.log(i, j, k, l);
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

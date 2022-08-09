@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS算法练习</title>
+</head>
+
+<body>
+    <script>
+        // 百马百担问题，有100匹马，驮100担货，大马驮3担，中马驮2担，2匹小马驮1担，求大、中、小各多少匹？
+        // console.log("大马" + count + "匹，中马" + count2 + "匹，小马" + count3 + "匹");
+
+        var a = 3;
+        var b = 2;
+        var c = 0.5;
+        for (let i = 0; i <= 100; i++) {
+            for (let j = 0; j <= 100; j++) {
+                for (let k = 0; k <= 100; k++) {
+                    if(a*i+b*j+c*k===100&&i+j+k===100){
+                        console.log("大马" + i + "匹，中马" + j + "匹，小马" + k + "匹");
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>    
+       /*
+       有一对幼兔，幼兔1个月后长成小兔，小兔1个月后长成成兔并生下一对幼兔，问8个月后有多少对兔子，
+       幼兔、小兔、成兔对数分别是多少。
+       */
+
+       var yt = 1;
+       var xt=0;
+       var ct=0;
+         for(var i=1;i<=8;i++){
+            ct=ct+xt;
+            xt=yt;
+            yt=ct;
+            console.log("第"+i+"个月，有"+yt+"对幼兔，"+xt+"对小兔，"+ct+"对成兔");
+         }
+    </script>
+</body>
+
+</html>

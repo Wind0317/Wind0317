@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript数组基础</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <script>
+        // 数组去重
+        var arr = [1, 2, 7, 4, 2, 4, "a", 'a', 'b', 'f', 'a', 'c', 'f']
+        function RemoveRepeat(arr) {
+            return [...new Set(arr)];
+        }
+        function RemoveRepeat2(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                for (var j = arr.length - 1; j > i; j--) {
+                    if (arr[i] === arr[j]) {
+                        arr.splice(j, 1)
+                    }
+                }
+            }
+            return arr;
+        }
+        function RemoveRepeat3(arr) {
+            var array = [];
+            for (var i = arr.length - 1; i >= 0; i--) {
+                if (array.indexOf(arr[i]) == -1) {
+                    array.push(arr[i]);
+                }
+            }
+            return array;
+        }
+        console.log(RemoveRepeat3(arr));
+
+        // 查找相同项
+        var arr1 = [1, 2, 7, 4, 3, "a", "d", "g"];
+        var arr2 = [7, 3, "d", "g", "h", 3, 7];
+        function arrSame(arr1, arr2) {
+            var arrSame = [];
+            for (var i = 0; i < arr1.length; i++) {
+                for (var j = 0; j < arr2.length; j++) {
+                    if (arr1[i] === arr2[j]) {
+                        arrSame.push(arr1[i])
+                    }
+                }
+            }
+            return [...new Set(arrSame)];
+        }
+        console.log(arrSame(arr1, arr2));
+
+
+        // 数组每项计数
+
+        var arr3 = ["a", "b", "c", "a", "a", "b", "d", "e", "f", "c", "g", "d", "e", "g", "a", "c", "a", "h", "a"];
+        function arrCount(arr3) {
+            var arrCount = [];
+            var arrCountItem = [];
+            for (var i = 0; i < arr3.length; i++) {
+                if (!(arrCountItem.includes(arr3[i]))) {
+                    arrCountItem.push(arr3[i]);
+                    var count = 0;
+                    for (var j = 0; j < arr3.length; j++) {
+                        if (arr3[i] === arr3[j]) {
+                            count++;
+                        }
+                    }
+                    arrCount.push({
+                        name: arr3[i],
+                        count: count
+                    });
+                }
+            }
+            return arrCount;
+        }
+        
+        function arrCount2(arr3) {
+            var arr = [...arr3];
+            var arrRemove = RemoveRepeat(arr3);
+            var arrCount = [];
+            for (var i = 0; i < arrRemove.length; i++) {
+                var count = 0;
+                for (var j = 0; j < arr.length; j++) {
+                    if (arrRemove[i] === arr[j]) {
+                        count++;
+                    }
+                }
+                arrCount.push({
+                    value: arrRemove[i],
+                    count: count
+                });
+            }
+            return arrCount;
+        }
+        console.log(arrCount2(arr3));
+    </script>
+</body>
+
+</html>
