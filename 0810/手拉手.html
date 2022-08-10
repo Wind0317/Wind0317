@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 手拉手围成圆，数数，数到3退出
+        var result = [];
+        for (var i = 0; i < 100; i++) {
+            result.push(i + 1);
+        }
+
+        var count = 0;
+        var index = -1;
+        
+        function isOne(arr) {
+            var count = 0;
+            arr.forEach((item) => {
+                if (item != false) {
+                    count++;
+                }
+            });
+            return count >= 2 ? true : false;
+        }
+        
+        while (isOne(result)) {
+            index++;
+            if (result[index] != false) {
+                count++;
+            }
+            if (count == 3) {
+                result[index] = false;
+                count = 0;
+            }
+            if (index == result.length - 1) {
+                index = -1;
+            }
+        }
+        
+        console.log(result);
+
+
+    </script>
+</body>
+
+</html>
