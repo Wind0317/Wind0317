@@ -14,8 +14,12 @@ var triangle = function (n) {
     }
     return result
 }
-var result = triangle(11);
-result.forEach(function (item) {
-    var content = item.join(' ');
+var result = triangle(10);
+result.forEach(function (item, index) {
+    var content = "";
+    for (var i = 0; i < 13 - index; i++) {
+        content += " ";
+    }
+    content += item.join(" ");
     console.log(content);
 });
