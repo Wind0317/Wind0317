@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0818-02</title>
+</head>
+
+<body>
+    <script>
+        // 计算两个时间差,并转换天数
+
+        console.log((new Date('2022-6-30 ') -
+            new Date('2022-1-18')) / 1000 / 60 / 60 / 24 + '天');
+
+        console.log(new Date(new Date("2022-08-18 00:00:00").valueOf() +
+            180 * 24 * 60 * 60 * 1000).toLocaleString());
+        
+    </script>
+</body>
+
+</html>

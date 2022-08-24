@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Animal(nickName, sex, age) {
+            this.nickName = nickName;
+            this.sex = sex;
+            this.age;
+        }
+        Animal.prototype.sleep = function () {
+            console.log(this.nickName, "在睡觉");
+        }
+        function Dog(nickName, sex, age, height) {
+            this.__proto__ = Dog.prototype = new Animal(nickName, sex, age);
+            this.height = height;
+            this.wang = function () {
+                console.log("wang");
+            }
+        }
+        function Cat(nickName, sex, age, weight) {
+            this.__proto__ = Cat.prototype = new Animal(nickName, sex, age);
+            this.weight = weight;
+            this.miao = function () {
+                console.log("miao");
+            }
+        }
+
+        function Pastoral(nickName, sex, age, height) {
+            this.__proto__ = Pastoral.prototype = new Dog(nickName, sex, age, height);
+            this.Janitor = function () {
+                console.log(this.nickName, "在看门");
+            }
+        }
+        var dog = new Dog('小狗', 'male', 10, 50);
+        var cat = new Cat('小猫', 'female', 5, 40);
+        var pastoral = new Pastoral('农家田园犬', 'male', 10, 60);
+        dog.sleep();
+        dog.wang();
+        cat.sleep();
+        cat.miao();
+        pastoral.sleep();
+        pastoral.wang();
+        pastoral.Janitor();
+        console.log(dog);
+        console.log(cat);
+        console.log(pastoral);
+    </script>
+</body>
+
+</html>

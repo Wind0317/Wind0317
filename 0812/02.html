@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>访问器属性</title>
+</head>
+
+<body>
+    <script>
+        function Person(userName, IDCard) {
+            Object.defineProperties(this, {
+                userName: {
+                    value: userName,
+                    configurable: false,
+                    writable: false,
+                    enumerable: true
+                },
+                IDCard: {
+                    value: IDCard,
+                    configurable: false,
+                    writable: false,
+                    enumerable: true
+                },
+                sex: {
+                    configurable: false,
+                    enumerable: true,
+                    get() {
+                        // 获取性别
+                        return this.IDCard[16] % 2 == 0 ? "女" : "男";
+                    }
+                },
+                age: {
+                    configurable: false,
+                    enumerable: true,
+                    get() {
+                        // 获取年龄
+                        var year = this.IDCard.substring(6, 10);
+                        var month = this.IDCard.substring(10, 12);
+                        var now = new Date();
+                        var age = now.getFullYear() - year;
+                        return month < now.getMonth() ? age : age - 1;
+
+                    }
+                },
+                birthday: {
+                    configurable: false,
+                    enumerable: true,
+                    get() {
+                        // 获取生日
+                        var year = this.IDCard.substring(6, 10);
+                        var month = this.IDCard.substring(10, 12);
+                        var day = this.IDCard.substring(12, 14);
+                        return year + "-" + month + "-" + day;
+                    }
+                }
+            });
+        }
+        var person = new Person("张三", "420984199905041016");
+        console.log(person);
+        // 属性的遍历
+        for (var key in person) {
+            console.log(key + ":" + person[key]);
+        }
+        console.log(Object.entries(person)); // 获取所有属性的键值对       
+        console.log(Object.getOwnPropertyDescriptors(person));
+        person.hasOwnProperty("userName"); // 是否有该属性
+    </script>
+</body>
+
+</html>

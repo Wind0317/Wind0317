@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 计算器的CSS */
+        .box {
+            width: 300px;
+            height: 350px;
+            background-color: #ccc;
+            margin: 0 auto;
+            margin-top: 100px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #000;
+            overflow: hidden;
+        }
+
+        .box1 input {
+            text-align: end;
+            width: 96%;
+            height: 60px;
+            background-color: #fff;
+            line-height: 100px;
+            font-size: 30px;
+            padding-right: 10px;
+        }
+
+        .box2 {
+            width: 100%;
+            height: 50px;
+        }
+
+        .box2 button {
+            width: 25%;
+            height: 50px;
+            background-color: #abc;
+            border: 1px solid #ccc;
+            float: left;
+            font-size: 30px;
+        }
+
+        .box2 button:active {
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 计算器的实现 -->
+    <div class="box">
+        <div class="box1">
+            <input type="text" id="text" value="0">
+        </div>
+        <div class="box2">
+            <button class="btn" id="btn1">1</button>
+            <button class="btn" id="btn2">2</button>
+            <button class="btn" id="btn3">3</button>
+            <button class="btn" id="btn4">+</button>
+        </div>
+        <div class="box2">
+            <button class="btn" id="btn5">4</button>
+            <button class="btn" id="btn6">5</button>
+            <button class="btn" id="btn7">6</button>
+            <button class="btn" id="btn8">-</button>
+        </div>
+        <div class="box2">
+            <button class="btn" id="btn9">7</button>
+            <button class="btn" id="btn10">8</button>
+            <button class="btn" id="btn11">9</button>
+            <button class="btn" id="btn12">*</button>
+        </div>
+        <div class="box2">
+            <button class="btn" id="btn13">0</button>
+            <button class="btn" id="btn14">.</button>
+            <button class="btn" id="btn15">=</button>
+            <button class="btn" id="btn16">/</button>
+        </div>
+
+        <!-- 计算器的清零 -->
+        <div class="box2">
+            <button class="btn" id="btn17" style="height: 85px;width: 100%;">AC</button>
+        </div>
+    </div>
+
+    <script>
+        // 计算器的实现
+        // 1.获取元素
+        var btns = document.querySelectorAll(".btn");
+        var text = document.getElementById("text");
+
+        var result = '';
+        // 2.给数字按钮添加点击事件
+        var reg = '1234567890';
+        for (var i = 0; i < btns.length; i++) {
+            if (reg.indexOf(btns[i].innerHTML) != -1) {
+                btns[i].onclick = function () {
+                    var btnValue = this.innerHTML;
+                    if (text.value == "0") {
+                        text.value = btnValue;
+                    } else {
+                        text.value += btnValue;
+                    }
+                }
+            }
+        }
+        // 3.给运算符添加点击事件
+        // 匹配+-*/
+        var reg1 = '+-*/';
+        for (var i = 0; i < btns.length; i++) {
+            if (reg1.indexOf(btns[i].innerHTML) != -1) {
+                btns[i].onclick = function () {
+                    var btnValue = this.innerHTML;
+                    result = text.value;
+                    if (result == '') {
+                        alert("请先输入数字");
+                    } else {
+                        // 运算之前判断是否有运算符
+                        if (result.includes('+') || result.includes('-') || result.includes('*') || result.includes('/')) {
+                            result = eval(result);
+                            text.value = result + btnValue;
+                        } else {
+                            text.value += btnValue;
+                        }
+                    }
+
+                }
+            }
+        }
+        // 4.给等号添加点击事件
+        var equal = document.getElementById("btn15");
+        equal.onclick = function () {
+            var str = text.value;
+            if (str.includes('+') || str.includes('-') || str.includes('*') || str.includes('/')) {
+                str = eval(str);
+                text.value = str;
+            } else {
+                alert("你还没有输入运算符");
+                text.value = str;
+            }
+        }
+        // 5.给清零添加点击事件
+        var ac = document.getElementById("btn17");
+        ac.onclick = function () {
+            text.value = "0";
+        }
+    </script>
+</body>
+
+</html>

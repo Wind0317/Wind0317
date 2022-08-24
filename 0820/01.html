@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家庭作业</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            num1: 117
+        }
+        var res = obj;
+        obj.child = obj = { num2: 935 };
+        var x = res.child.num2;
+        console.log(obj.child);
+        console.log(res.num1);
+        console.log(x);
+
+
+
+
+    </script>
+</body>
+
+</html>

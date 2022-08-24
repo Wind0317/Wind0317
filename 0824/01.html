@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0824-01</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* body {
+            background-color: rgb(24, 154, 111);
+        } */
+
+        #box {
+            /* position: relative; */
+            margin: auto;
+            margin-top: 50px;
+            text-align: start;
+            width: fit-content;
+            height: fit-content;
+        }
+
+        .table1 {
+            border: 1px solid black;
+            width: 800px;
+            margin: auto;
+            /* margin-top: 50px; */
+        }
+
+        table th {
+            border: 1px solid black;
+            height: 30px;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        .table1 tr td {
+            height: 35px;
+            line-height: 35px;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        .table1 tr {
+            border: 1px solid black;
+        }
+
+        button.delete {
+            height: 25px;
+            line-height: 25px;
+            width: 50px;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #e90600;
+            cursor: pointer;
+            border: none;
+        }
+
+        button.edit {
+            height: 25px;
+            line-height: 25px;
+            width: 50px;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #fd9d06;
+            cursor: pointer;
+            border: none;
+        }
+
+        .edit-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            /* color: #fff; */
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .edit-box .edit {
+            background-color: #fff;
+            width: 500px;
+            height: 300px;
+            margin: auto;
+            margin-top: 100px;
+        }
+
+        .edit-box .edit p {
+            width: fit-content;
+            margin: auto;
+        }
+
+        .edit-box input {
+            margin-top: 10px;
+            height: 30px;
+            width: 400px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .edit .edit-btn {
+            height: 40px;
+            line-height: 40px;
+            width: 100px;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #fd9d06;
+            cursor: pointer;
+            border: none;
+            margin-top: 20px;
+        }
+
+        .edit-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .add-btn {
+            height: 30px;
+            line-height: 25px;
+            width: 50px;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #22a7a6;
+            cursor: pointer;
+            border: none;
+            margin: auto;
+            margin-bottom: 10px;
+        }
+
+        .delete-btn {
+            height: 30px;
+            line-height: 25px;
+            width: 80px;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #e90600;
+            cursor: pointer;
+            border: none;
+            margin: auto;
+            margin-bottom: 10px;
+        }
+
+        .cancel-btn {
+            height: 40px;
+            line-height: 40px;
+            width: 100px;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #e90600;
+            cursor: pointer;
+            border: none;
+            margin-top: 20px;
+        }
+
+        .edits-btn {
+            height: 30px;
+            line-height: 25px;
+            width: 80px;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #fd9d06;
+            cursor: pointer;
+            border: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="edit-box">
+        <div class="edit">
+            <p>
+                姓名 <input type="text" name="name" id="name" placeholder="请输入姓名">
+            </p>
+            <p>
+                性别 <input type="text" name="sex" id="sex" placeholder="请输入性别">
+            </p>
+            <p>
+                年龄 <input type="text" name="age" id="age" placeholder="请输入年龄">
+            </p>
+            <p>
+                爱好 <input type="text" name="hobby" id="hobby" placeholder="请输入爱好">
+            </p>
+            <p class="edit-content">
+                <button class="edit-btn">修改</button>
+                <button class="cancel-btn">取消</button>
+            </p>
+        </div>
+
+    </div>
+    <div id="box">
+        <button class="add-btn" type="button" onclick="addOnclick(this)">新增</button>
+        <button class="edits-btn" type="button">批量修改</button>
+        <button class="delete-btn" type="button">批量删除</button>
+    </div>
+</body>
+<script>
+    var stus = [
+        {
+            stuName: "张三",
+            sex: "女",
+            age: 18,
+            hobby: ["看书", "睡觉"]
+        },
+        {
+            stuName: "李四",
+            sex: "女",
+            age: 22,
+            hobby: ["看书", "睡觉"]
+        },
+        {
+            stuName: "王五",
+            sex: "男",
+            age: 18,
+            hobby: ["看书", "睡觉"]
+        },
+        {
+            stuName: "赵六",
+            sex: "男",
+            age: 30,
+            hobby: ["看书", "睡觉"]
+        },
+        {
+            stuName: "田七",
+            sex: "女",
+            age: 19,
+            hobby: ["看书", "睡觉"]
+        },
+        {
+            stuName: "周八",
+            sex: "女",
+            age: 22,
+            hobby: ["看书", "睡觉"]
+        }
+    ]
+
+    //第一步:将上面的数组以年龄大小进行从小大到排序
+    stus.sort((a, b) => {
+        return a.age - b.age;
+    })
+    console.log(stus);
+    //第二步:将排序以后的结果以table的形式渲染到页面上面
+    var table = document.createElement('table');
+    table.className = "table1";
+    document.getElementById('box').appendChild(table);
+    var content = '';
+    content += `<tr>
+            <th>
+                <label>
+                    <input type='checkbox' id='all-checked' onclick='allChecked(this)'>全选
+                </label>
+                </th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>爱好</th>
+            <th>操作</th>
+        </tr>`
+    stus.forEach((item, index) => {
+        content += `<tr>
+            <td><input type='checkbox' class='check' onclick='onCheck(this)'></td>
+            <td>${item.stuName}</td>
+            <td>${item.sex}</td>
+            <td>${item.age}</td>
+            <td>${item.hobby}</td>
+            <td>
+                <button  class='edit' onclick='editClick(this)'>编辑</button>
+                <button class='delete' onclick='deleteClick(this)'>删除</button>
+            </td>
+        </tr>`
+    });
+    table.innerHTML = content;
+
+
+    function deleteClick(ele) {
+        ele.parentElement.parentElement.remove();
+    }
+
+    // 单个修改
+
+    function editClick(ele) {
+        var editBox = document.querySelector('.edit-box');
+        editBox.style.display = 'block';
+        var editBtn = document.querySelector('.edit-btn');
+        editBtn.innerHTML = '修改';
+        editBtn.style.backgroundColor = '#fd9d06';
+        var td_name = ele.parentElement.parentElement.children[1];
+        var td_sex = ele.parentElement.parentElement.children[2];
+        var td_age = ele.parentElement.parentElement.children[3];
+        var td_hobby = ele.parentElement.parentElement.children[4];
+        var name = document.getElementById('name');
+        var sex = document.getElementById('sex');
+        var age = document.getElementById('age');
+        var hobby = document.getElementById('hobby');
+        name.value = td_name.innerHTML;
+        sex.value = td_sex.innerHTML;
+        age.value = td_age.innerHTML;
+        hobby.value = td_hobby.innerHTML;
+        editBtn.onclick = () => {
+            editBox.style.display = 'none';
+            td_name.innerHTML = name.value;
+            td_sex.innerHTML = sex.value;
+            td_age.innerHTML = age.value;
+            td_hobby.innerHTML = hobby.value;
+        }
+
+    }
+    // 添加按钮
+    function addOnclick(ele) {
+        var inputs = document.querySelectorAll('.edit>p>input');
+        inputs.forEach(item => {
+            item.value = '';
+        })
+        var editBox = document.querySelector('.edit-box');
+        editBox.style.display = 'block';
+        var editBtn = document.querySelector('.edit-btn');
+        editBtn.innerHTML = '新增';
+        editBtn.style.backgroundColor = '#22a7a6';
+        editBtn.onclick = () => {
+            editBox.style.display = 'none';
+            var name = document.getElementById('name');
+            var sex = document.getElementById('sex');
+            var age = document.getElementById('age');
+            var hobby = document.getElementById('hobby');
+            var text = `<tr>
+            <td><input type='checkbox' class='check' onclick='onCheck(this)'></td>
+            <td>${name.value}</td>
+            <td>${sex.value}</td>
+            <td>${age.value}</td>
+            <td>${hobby.value}</td>
+            <td>
+                <button  class='edit' onclick='editClick(this)'>编辑</button>
+                <button class='delete' onclick='deleteClick(this)'>删除</button>
+            </td>
+        </tr>`
+            table.innerHTML += text;
+        }
+    }
+
+    // 全选按钮
+    function allChecked(ele) {
+        var checks = document.querySelectorAll('.check');
+        checks.forEach(item => {
+            item.checked = ele.checked;
+        })
+    }
+    // 单个选择
+    function onCheck(ele) {
+        var allChecked = document.getElementById('all-checked');
+        allChecked.checked = ele.parentElement.parentElement.children.length === document.querySelectorAll('.check:checked').length;
+    }
+
+    // 批量删除,获取checkd为true的删除
+    var buttonDelete = document.querySelector('.delete-btn');
+    buttonDelete.onclick = () => {
+        var checks = document.querySelectorAll('.check');
+        var stus = [];
+        checks.forEach(item => {
+            if (item.checked) {
+                stus.push(item.parentElement.parentElement);
+            }
+        })
+        stus.forEach(item => {
+            item.remove();
+        }
+        )
+    };
+    // 修改和新增的取消按钮
+    var buttonCancel = document.querySelector('.cancel-btn');
+    buttonCancel.onclick = () => {
+        var editBox = document.querySelector('.edit-box');
+        editBox.style.display = 'none';
+    }
+
+    // 批量修改
+    var editsBtn = document.querySelector('.edits-btn');
+    editsBtn.onclick = () => {
+        var checks = document.querySelectorAll('.check');
+        var stus = [];
+        checks.forEach(item => {
+            if (item.checked) {
+                stus.push(item.parentElement.parentElement);
+            }
+        })
+        console.log(stus);
+        var inputs = document.querySelectorAll('.edit>p>input');
+        inputs.forEach(item => {
+            item.value = '';
+        })
+        var editBox = document.querySelector('.edit-box');
+        editBox.style.display = 'block';
+        var editBtn = document.querySelector('.edit-btn');
+        editBtn.innerHTML = '批量修改';
+        editBtn.style.backgroundColor = '#fd9d06';
+        editBtn.onclick = () => {
+            editBox.style.display = 'none';
+            stus.forEach(item => {
+                inputs.forEach((item1, index) => {
+                    item.children[index + 1].innerHTML = item1.value;
+                })
+            })
+        }
+    }
+</script>
+
+</html>
+<!-- 
+    <table class="table1">
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>爱好</th>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>女</td>
+            <td>18</td>
+            <td>看书,睡觉</td>
+        </tr>
+    </table>
+
+ -->

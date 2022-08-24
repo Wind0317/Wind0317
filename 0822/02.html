@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习题1</title>
+    <style>
+        .ul1 {
+            border: 1px solid black;
+        }
+
+        .ul1>li {
+            height: 35px;
+            line-height: 35px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+
+    </div>
+</body>
+<script>
+    var arr = ['张三', '李四', '王五', '赵六', '田七'];
+    var ul1 = document.createElement('ul');
+    ul1.className = 'ul1';
+    document.querySelector('#box').appendChild(ul1);
+    // for (var i = 0; i < arr.length; i++) {
+    //     str += `<li>${arr[i]}</li>`;
+    // }
+    arr.forEach(item => {
+        var li = document.createElement('li');
+        li.innerHTML = item;
+        ul1.appendChild(li);
+    })
+
+</script>
+
+</html>

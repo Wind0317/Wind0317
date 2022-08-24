@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 作业1 实际上的调用
+        var arr = ["1", "2", "3"].map(function (item, index, _arr) {
+            return parseInt(item, index);
+        });
+        console.log(arr);
+
+        var arr = ["1", "0", "1", "中", "学"];
+        var result1 = parseInt(arr.join('')); //NaN
+        var result2 = arr.map(parseInt); //[1,0,1,NaN,NaN]
+        console.log(result1);//NaN
+        console.log(result2); //[1,NaN,1,NaN,NaN]
+
+    </script>
+</body>
+
+</html>

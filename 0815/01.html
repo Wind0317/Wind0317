@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Animal(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        function Dog(name, age, sex) {
+            this.sex = sex;
+            Animal.apply(this, [name, age])
+        }
+        function Person(name, age, hobby) {
+            this.hobby = hobby;
+            Animal.apply(this, [name, age])
+        }
+        function Student(name, age, hobby, sid) {
+            this.sid = sid;
+            Person.apply(this, [name, age, hobby])
+        }
+
+        var dog = new Dog('dog', 2,'male');
+        console.log(dog);
+    </script>
+</body>
+
+</html>

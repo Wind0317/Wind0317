@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算器</title>
+</head>
+
+
+<body>
+    <input type="number" id="num1">
+    <select id="opea">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="number" id="num2">
+    <span>=</span>
+    <input readonly type="text" id="result">
+    <button type="button">计算</button>
+    <script>
+        var btn = document.querySelector('button');
+        btn.onclick = function () {
+            var num1 = document.getElementById('num1').value;
+            var num2 = document.getElementById('num2').value;
+            var opea = document.getElementById('opea').value;
+            var result = document.getElementById('result');
+            // result.value = eval(num1 + opea + num2);
+            switch (opea) {
+                case '+':
+                    result.value = +num1 + +num2;
+                    break;
+                case '-':
+                    result.value = +num1 - +num2;
+                    break;
+                case '*':
+                    result.value = +num1 * +num2;
+                    break;
+                case '/':
+                    result.value = +num1 / +num2;
+                    break;
+            }
+        }
+    </script>
+</body>
+
+
+</html>

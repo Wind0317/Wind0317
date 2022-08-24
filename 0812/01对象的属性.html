@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的属性的定义</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            name: '张三',
+            age: 18,
+            height: 1.75,
+            weight: 75,
+            isMale: true,
+            say: function() {
+                console.log('我是' + this.name);
+            }
+        };
+        Object.defineProperty(obj, 'name', {
+            enumerable: true, // 可枚举 可以使用for...in循环遍历
+            configurable: true, // 可配置 可删除 
+            writable: true, // 可写 可设置值 
+            value: '李四' // 值 
+
+        });
+        
+    </script>
+</body>
+</html>

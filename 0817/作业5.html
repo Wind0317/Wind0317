@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //原数组
+        var arr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o"]
+        //结果数组
+        var newArr = [
+            ["a", "b"],
+            ["c", "d", "e"],
+            ["f", "g"],
+            ["h", "i", "j"],
+            ["k", "l"],
+            ["m", "n", "o"]
+        ]
+        function splitArr(arr) {
+            var newArr = [];
+            var tempArr = [];
+            var flag = true;
+            for (var i = 0; i < arr.length; i++) {
+                tempArr.push(arr[i]);
+                if (tempArr.length == 2 && flag) {
+                    newArr.push(tempArr);
+                    tempArr = [];
+                    flag = false;
+                } else if (tempArr.length == 3 && !flag) {
+                    newArr.push(tempArr);
+                    tempArr = [];
+                    flag = true;
+                }
+            }
+            return newArr;
+        }
+        console.log(splitArr(arr));
+
+    </script>
+</body>
+
+</html>

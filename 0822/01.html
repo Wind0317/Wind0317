@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom</title>
+    <style>
+        h2:last-child {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="ul1">
+        <li>第1项</li>
+        <li>第2项</li>
+        <li>第3项</li>
+        <li>第4项</li>
+        <li>第5项</li>
+        <li>第6项</li>
+        <li>第7项</li>
+        <li>第8项</li>
+        <li>第9项</li>
+        <li>第10项</li>
+    </ul>
+    <script>
+        var ul1 = document.querySelector('.ul1');
+        var lis = Array.from(ul1.children);
+        // lis.forEach(function (li, index) {
+        //     ul1.removeChild(li);
+        // });
+
+        // lis.forEach(function (li, index) {
+        //     li.remove();
+        // });
+        var length = lis.length
+        for (var i = 0; i < length; i++) {
+            lis.pop().remove();
+        }
+    </script>
+</body>
+
+
+</html>

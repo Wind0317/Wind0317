@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象属性的遍历及方法的调用</title>
+</head>
+
+<body>
+    <script>
+        // 对象的递归遍历
+        function printObject(obj) {
+            if (Object.prototype.toString.call(obj) === '[object Object]') {
+                Object.getOwnPropertyNames(obj).forEach((key) => {
+                    printObject(obj[key]);
+                });
+            } else if (Object.prototype.toString.call(obj) === '[object Array]') {
+                obj.forEach((item) => {
+                    printObject(item);
+                });
+            } else {
+                if (typeof obj === "function") {
+                    obj.call(obj1);
+                } else {
+                    console.log(obj);
+                }
+            }
+        }
+
+        // enumerable=false的属性
+        function arrEnumerable(obj) {
+            let arr = []
+            for (let key in obj) {
+                if (obj[key].enumerable === false) {
+                    arr.push(key)
+                }
+            }
+            return arr;
+        }
+
+
+        var obj1 = {
+            userName: "张珊"
+        }
+        Object.defineProperties(obj1, {
+            sex: {
+                enumerable: false,
+                value: "男"
+            },
+            age: {
+                enumerable: false,
+                get: function () {
+                    return 19;
+                }
+            },
+            sayHello: {
+                enumerable: false,
+                value: function () {
+                    console.log("大家好，我叫" + this.userName);
+                }
+            }
+        })
+
+        var arr = arrEnumerable(Object.getOwnPropertyDescriptors(obj1));
+        console.log(Object.getOwnPropertyDescriptors(obj1));
+        console.log(arr);
+        printObject(obj1);
+
+
+        var teacherInfo = {
+            teahcerName: "标哥哥",
+            age: 19,
+            sex: "男",
+            money: 1000
+        }
+        var stu1 = {
+            userName: "张珊",
+            sex: "女",
+            age: 18,
+            aaa: teacherInfo,
+            hobby: ["看书", "睡觉"]
+        }
+        printObject(stu1);
+        b=1
+    </script>
+</body>
+
+</html>

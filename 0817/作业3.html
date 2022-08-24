@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作业3</title>
+</head>
+
+<body>
+    <script>
+        /* 3. 请设计并写出一个函数，请将一个数组中的数字挑选出来，并返回所有数字的和，
+        如果数组中无数字则返回undefined。该函数具有一个参数用以传入字符串。 */
+        function getNumberSum(str) {
+            var arr = str.split("");
+            var sum = 0;
+            arr.forEach(element => {
+                if (isNaN(element) == false) {
+                    sum += ~~(element);
+                }
+            });
+            if (sum == 0) {
+                return undefined;
+            }
+            return sum;
+        }
+        var a = getNumberSum('fdgdfgdfgdfg');
+        console.log(a);
+    </script>
+</body>
+
+</html>

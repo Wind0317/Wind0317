@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0817-01</title>
+</head>
+
+<body>
+
+    <script>
+        function a(x, y, z) {
+            console.log(x); //11
+            console.log(y); //22
+            console.log(z); //undefined
+            var x = 22;
+            var y = 33;
+            z = 44;
+            console.log(x); //22
+            console.log(y); //33
+            console.log(z); //44
+            console.log(arguments[0]); //22
+            console.log(arguments[1]); //33
+            console.log(arguments[2]); //undefined
+            arguments[2] = 55;
+            console.log(z); //44
+            console.log(arguments[2]); //55
+        }
+        a(11, 22)
+    </script>
+</body>
+
+</html>
