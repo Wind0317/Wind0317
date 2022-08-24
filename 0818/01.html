@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0818-01</title>
+</head>
+
+<body>
+    <script>
+        // 计算两个时间差,并转换为年月日时分秒
+        function timeDiff(start, end) {
+            // 1.计算两个时间差
+            let diff = end - start;
+            // 2.转换为年月日时分秒
+            let year = Math.floor(diff / 1000 / 60 / 60 / 24 / 365);
+            diff = diff - year * 1000 * 60 * 60 * 24 * 365;
+            let month = Math.floor(diff / 1000 / 60 / 60 / 24 / 30);
+            diff = diff - month * 1000 * 60 * 60 * 24 * 30;
+            let day = Math.floor(diff / 1000 / 60 / 60 / 24);
+            diff = diff - day * 1000 * 60 * 60 * 24;
+            let hour = Math.floor(diff / 1000 / 60 / 60);
+            diff = diff - hour * 1000 * 60 * 60;
+            let minute = Math.floor(diff / 1000 / 60);
+            diff = diff - minute * 1000 * 60;
+            let second = Math.floor(diff / 1000);
+            // 3.返回
+            return {
+                year,
+                month,
+                day,
+                hour,
+                minute,
+                second
+            }
+        }
+        // 1.获取当前时间
+        let now = new Date();
+        // 2.获取指定时间
+        let start = new Date(1999, 9, 1, 0, 0, 0);
+        // 3.计算两个时间差
+        let diff = timeDiff(start, now);
+        // 4.输出
+        console.log(diff);
+        
+        
+
+
+    </script>
+</body>
+
+</html>

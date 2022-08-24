@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // // 有一对幼兔，幼兔1个月后长成小兔，小兔1个月后长成成兔并生下一对幼兔，问8个月后有多少对兔子，幼兔、小兔、成兔对数分别是多少。
+        // var a = 1; //幼兔
+        // var b = 0; //小兔
+        // var c = 0;  //成兔
+        // for (let i = 0; i < 8; i++) {
+        //     a = a * 2;
+        //     b = b + a;
+        //     c = c + b;
+        // }
+        // console.log("幼兔" + a + "对，小兔" + b + "对，成兔" + c + "对");
+
+
+        // 羽毛球拍15元，球3元，水2元。200元每种至少一个，有多少可能？
+
+        var x = 15; //羽毛球
+        var y = 3; //球
+        var z = 2; //水
+        for (let i = 1; i < 200 / 15; i++) {
+            for (let j = 1; j < 200 / 3; j++) {
+                for (let k = 1; k < 200 / 2; k++) {
+                    if (x * i + y * j + z * k === 200) {
+                        console.log("羽毛球" + i + "个，球" + j + "个，水" + k + "个");
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

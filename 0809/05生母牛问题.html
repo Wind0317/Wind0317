@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getCows(year) {
+            var cow = [0];
+            for (var i = 1; i <= year; i++) {
+                var cowTenYear = 0;
+                var count = 0;
+                // 先给每一头牛的年岁加1
+                for (var j = 0; j < cow.length; j++) {
+                    cow[j] = cow[j] + 1;
+                    // 计算能够生的牛的数量
+                    if (cow[j] >= 4) {
+                        count++;
+                    }
+                }
+                
+                // 能够生的母牛的数量(每头牛生一头)
+                for (var k = 0; k < count; k++) {
+                    cow.push(0);
+                }
+                // 去除大于10岁的母牛
+                cow = cow.filter((item) => {
+                    return item < 10;
+                });
+            }
+            return cow;
+        }
+        console.log(getCows(20).length);
+        console.log(getCows(20));
+    </script>
+</body>
+
+</html>

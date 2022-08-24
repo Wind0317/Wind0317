@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 判断平年和闰年
+        function isLeapYear(year) {
+            return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+        }
+        // 计算年月日是第几天
+        function getDate(year, month, day) {
+            if (month < 1 || month > 12 || day < 1 || day > 31 || year < 1 || year > 9999) {
+                return "输入不合法";
+            } else {
+                var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+                if (isLeapYear(year)) {
+                    months[1] = 29;
+                }
+                var days = 0;
+                months.forEach((item, index) => {
+                    if (index < month - 1) {
+                        days += item;
+                    }
+                });
+                return days + day;
+            }
+        }
+        console.log(getDate(2020, 02, 09));
+
+        /* 两个乒乓球队进行比赛，各出三人。甲队为，a,b, c三人，乙队为x, y, z三人。以抽签决定比赛名单。
+        有人向队员打听比赛的名单。
+        a说他不和x比，c说他不和x, z比，
+        请编程序找出三队赛手的名单 */
+        var a = ["a", "b", "c"];
+        var b = ["x", "y", "z"];
+        b.indexOf("x");
+        function getTeam(a, b) {
+            var arr = [];
+            for (var i = 0; i < b.length; i++) {
+                for (var j = 0; j < b.length; j++) {
+                    for (var k = 0; k < b.length; k++) {
+                        if (i != j && i != k && j != k) {
+                            if (i != 0 && k != 0 && k != 2) {
+                                arr.push({
+                                    a: a[0],
+                                    b: b[i],
+                                });
+                                arr.push({
+                                    a: a[1],
+                                    b: b[j],
+                                });
+                                arr.push({
+                                    a: a[2],
+                                    b: b[k],
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            return arr;
+        }
+        console.log(getTeam(a, b));
+
+        function getTeam2(a, b) {
+            var arr = [];
+            for (var i = a.length - 1; i >= 0; i--) {
+                for (var j = 0; j < b.length; j++) {
+                    if ((a[i] == 'a' && b[j] != 'x') || (a[i] == 'c' && b[j] != 'x' && b[j] != 'z') || (a[i] == 'b')) {
+                        arr.push({
+                            a: a[i],
+                            b: b[j],
+                        });
+                        b.splice(b.indexOf(b[j]), 1);
+                    }
+                }
+            }
+            return arr;
+        }
+        console.log(getTeam2(a, b));
+    </script>
+</body>
+
+</html>

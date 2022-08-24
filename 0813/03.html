@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            background-color: #2E3440;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var a = 2;
+        var obj = {
+            a: 5,
+            def(x, y) {
+                console.log(this.a);
+                return x + y;
+            }
+        }
+        function abc(x, y) {
+            console.log(this.a);
+            return x * y;
+        }
+        var reuslt1 = abc.call(obj, a, obj.a);
+        var reuslt2 = obj.def(this.a, obj.a);
+        var reuslt3 = obj.def.apply(window, [obj.a, a]);
+
+    </script>
+</body>
+
+</html>

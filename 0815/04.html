@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组中对象排序</title>
+</head>
+
+<body>
+    <script>
+        var arr = [
+            { age: 11, name: "a" },
+            { age: 3, name: "b" },
+            { age: 55, name: "c" },
+            { age: 6, name: "d" }
+        ]
+        arr.forEach(function (item, index) {
+            item.toString = function () {
+                return this.age
+            }
+        });
+        arr.sort(function (a, b) {
+            return a.toString() - b.toString()
+        });
+        console.log(arr);
+    </script>
+</body>
+
+</html>

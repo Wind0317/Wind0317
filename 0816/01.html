@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0816-01</title>
+</head>
+
+<body>
+    <script>
+        // 对象的递归深拷贝
+        function DeepCopyObj(obj) {
+            if (obj == null || typeof obj != 'object') {
+                return obj;
+            }
+            var newObj = Array.isArray(obj) ? [] : {};
+            Object.getOwnPropertyNames(obj).forEach(function (key) {
+                newObj[key] = DeepCopyObj(obj[key]);
+            });
+            return newObj;
+        }
+        var obj = {
+            a: 1,
+            b: 2,
+            c: {
+                d: 3,
+                e: null
+            },
+            f: [1, 2, 3, {
+                g: undefined,
+                h: 5,
+                i: [1, 2, 3, 4, 5],
+                j: {
+                    k: 6,
+                    l: 7,
+                    m: [1, 2, 3, 4, 5]
+                }
+            }]
+        };
+        var newObj = DeepCopyObj(obj);
+        console.log(newObj);
+        console.log(obj);
+        console.log(newObj === obj);
+
+    </script>
+</body>
+
+</html>

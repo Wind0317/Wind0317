@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数
+        function Person() {
+            this.say = function () {
+                console.log('Person,hello');
+            }
+            this.age = 19;
+            this.name = '张三';
+            this.sayhi = function () {
+                console.log('Person,hi');
+            }
+        }
+
+        function Student() {
+            this.say = function () {
+                console.log('Student,hello');
+            }
+            this.age = 18;
+            this.name = '李四';
+        }
+        
+        Student.prototype = new Person();
+
+        var stu = new Student();
+        // stu.say();
+        console.log(stu.age);
+        console.log(stu.name);
+        stu.sayhi();
+        stu.say();
+        console.log(stu);
+
+
+    </script>
+</body>
+
+</html>

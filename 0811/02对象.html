@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var stu1 = {
+            birthday: "1997-5-4"
+        };
+        //现在上面的有了一个学生的对象， 我们在这个对象里面添加了一个属性birthday生日
+        //现在我们还希望给它添加一个属性age,但是这个age年龄属性应该是根据生日自动计算出来的
+        Object.defineProperty(stu1, "age", {
+            configurable: false, //这个属性不可被delete
+            enumerable: true, //代表这个属性可以遍历
+            get: function () {
+                return "访问了age属性";
+            },
+            set: function (v) {
+                //这里的v代表的就是你要赋的值
+                console.log("你在对age这个属性赋值，你要赋的值是：" + v);
+                this.age=v;
+            }
+        });
+        console.log(stu1.age);
+        stu1.age = "18";
+        console.log(stu1.age);
+        console.log(stu1);
+
+    </script>
+</body>
+
+</html>
