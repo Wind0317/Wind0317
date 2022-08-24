@@ -21,7 +21,7 @@
 
         .box1 input {
             text-align: end;
-            width: 96%;
+            width: 97%;
             height: 60px;
             background-color: #fff;
             line-height: 100px;
@@ -120,8 +120,13 @@
                     } else {
                         // 运算之前判断是否有运算符
                         if (result.includes('+') || result.includes('-') || result.includes('*') || result.includes('/')) {
-                            result = eval(result);
-                            text.value = result + btnValue;
+                            if (reg1.includes(result[result.length - 1])) {
+                                result = result.substring(0, result.length - 1);
+                                text.value = result + btnValue;
+                            } else {
+                                result = eval(result) + btnValue;
+                                text.value = result;
+                            }
                         } else {
                             text.value += btnValue;
                         }
