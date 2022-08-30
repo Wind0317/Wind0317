@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="template-web.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+<ul class="ul1"></ul>
+<script type="text/html" id="template01">
+            {{each data item index}}
+                {{if item.sex=='男'}}
+                <li style="color:blue;">{{item}}</li>
+                {{else if item.sex=='女'}}
+                <li style="color:red;">{{item}}</li>
+                {{/if}}
+            {{/each}}
+</script>
+<script src="stus.js"></script>
+<script>
+    var htmlStr = template('template01', {
+        data: stus
+    });
+    console.log(htmlStr);
+    document.querySelector('.ul1').innerHTML = htmlStr;
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            border-radius: 50%;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        @keyframes box-ani {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+    </div>
+    <script>
+        var box = document.querySelector('.box');
+        var flag = true;
+        box.addEventListener('click', function () {
+            if (flag) {
+                box.style.backgroundColor = 'red';
+                box.style.borderRadius = '0';
+                box.style.animation = 'box-ani 1s linear infinite';
+                flag = !flag;
+            } else {
+                box.style.animation = '';
+                box.style.backgroundColor = 'blue';
+                box.style.borderRadius = '50%';
+                flag = !flag;
+            }
+        });
+    </script>
+</body>
+
+</html>

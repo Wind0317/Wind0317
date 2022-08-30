@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Animal(nickName) {
+            this.nickName = nickName;
+            this.sleep = function () {
+                console.log(this.nickName + ' is sleeping');
+            }
+        }
+
+        function Cat(nickName, age) {
+            Animal.call(this, nickName);
+            this.__proto__ = Cat.prototype = Animal.prototype;
+            this.age = age;
+            this.miao = function () {
+                console.log(this.nickName + ' is miao');
+            }
+
+        }
+        function Dog(nickName, height) {
+            Animal.call(this, nickName);
+            this.__proto__ = Dog.prototype = Animal.prototype;
+            this.height = height;
+            this.wang = function () {
+                console.log(this.nickName + ' is wang');
+            }
+        }
+        var cat = new Cat('小猫', 2);
+        var dog = new Dog('小狗', 3);
+        console.log(cat);
+        console.log(dog);
+        cat.sleep();//小猫 is sleeping
+        dog.sleep();//小狗 is sleeping
+        cat.miao(); //小猫 is miao
+        dog.wang(); //小狗 is wang
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .container-box {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title-bar {
+            height: 50px;
+            width: 100%;
+            background-color: #e83d4d;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content-box {
+            flex: 1;
+            background-color: #f8f8f8;
+            overflow: auto;
+        }
+
+        .content-box .title {
+            height: 45px;
+            line-height: 45px;
+            margin-left: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .content-box .area {
+            height: 45px;
+            line-height: 45px;
+        }
+
+        .dis {
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .content-box .area .ul1 {
+            height: 40px;
+            text-align: center;
+            display: flex;
+            font-size: 20px;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .ul1 li {
+            width: 33%;
+        }
+
+        .ul1 li+li {
+            border-left: 3px solid #f1f1f1;
+        }
+
+        .content p:first-child>span:last-child {
+            color: #e83d4d;
+            font-weight: bold;
+        }
+
+        .item {
+            /* border: 1px solid black; */
+            padding: 10px 10px;
+            border-top: 1px solid #f5f5f5;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .item p:last-child span {
+            color: #e83d4d;
+            border: 1px solid #e83d4d;
+            border-radius: 4px;
+            padding: 2px 1px;
+        }
+
+        .item p {
+            margin-top: 10px;
+        }
+
+        .footer-box {
+            height: 50px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+    </style>
+    <script src="template-web.js"></script>
+    <script src="cinema.js"></script>
+</head>
+
+<body>
+    <script type="text/html" id="template01">
+        <div class="container-box">
+            <div class="title-bar">
+                <h2>影院</h2>
+            </div>
+            <div class="content-box">
+                <div class="title">
+                    武汉
+                </div>
+                <div class="area">
+                    <ul class="ul1">
+                        <li>全城</li>
+                        <li>品牌</li>
+                        <li>特色</li>
+                    </ul>
+                </div>
+                <div class="content">
+                    {{each data item index}}
+                        <div class="item">
+                            <p>
+                                <span style="font-weight:bold ;">{{item.nm}}</span>
+                                <span>{{item.sellPrice}}元起</span>
+                            </p>
+                            <p class="dis">
+                                <span>{{item.addr}}</span>
+                                <span>{{item.distance}}</span>
+                            </p>
+                            <p>
+                                {{if item.tag.allowRefund==1}}
+                                    <span>退</span>
+                                {{/if}}
+                                {{if item.tag.endorse==1}}
+                                    <span>改</span>
+                                {{/if}}
+                                {{if item.tag.snack==1}}
+                                    <span>小吃</span>
+                                {{/if}}
+                                {{if item.tag.sell==1}}
+                                    <span>有票</span>
+                                {{/if}}
+                                {{if item.tag.vipTag!=''}}
+                                    <span>折扣卡</span>
+                                {{/if}}
+                                {{if 'hallType' in item.tag}}
+                                <span style="color: #40c2d1;border-color: #40c2d1;">{{item.tag.hallType[0]}}</span>
+                                {{/if}}
+                            </p>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="footer-box">
+                <span>影片</span>
+                <span>影院</span>
+                <span>票房</span>
+                <span>我的</span>
+            </div>
+        </div>
+    </script>
+
+    <script>
+        console.log(cinema[0].nm);
+        var htmlStr = template("template01", {
+            data: cinema
+        });
+        document.body.innerHTML = htmlStr;
+    </script>
+</body>
+
+</html>
