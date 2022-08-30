@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城市选择</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        #app {
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+        }
+
+        #app>ul {
+            margin-left: 20px;
+            margin-top: 20px;
+            background-color: #e7e7e8;
+        }
+
+        #app>ul>li:first-child {
+            height: 40px;
+            line-height: 40px;
+            text-indent: 20px;
+            background-color: #dededf;
+        }
+
+        #app>ul>li+li {
+            height: 30px;
+            line-height: 30px;
+            margin-top: 10px;
+            text-indent: 10px;
+            border-bottom: 1px solid #c1c0c6;
+        }
+
+        .right-box {
+            position: fixed;
+            top: 90px;
+            right: 0;
+            font-size: 12px;
+        }
+
+        .right-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: #8b8b8c;
+        }
+
+        .right-box ul li {
+            height: 20px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/html" id="template01">
+        <div id="app">
+            <div class="right-box">
+
+            </div>
+        {{each data item_data index1}}
+        {{each letters item_letter index2}}
+        <ul class="{{item_letter}}">
+            <li>{{item_letter.toUpperCase()}}</li>
+            {{each item_data item index3}}
+            <li>{{item.nm}}</li>
+            {{/each}}
+        </ul>
+        {{/each}}
+        {{/each}}
+        </div>
+    </script>
+</body>
+
+<script src="./js/template-web.js"></script>
+<script src="./js/cityList.js"></script>
+<script>
+    cityList.sort(function (a, b) {
+        return a.py[0].localeCompare(b.py[0]);
+    });
+    // 讲相同首字母的城市放在一起
+    var cityListGroup = {};
+    for (var i = 0; i < cityList.length; i++) {
+        var city = cityList[i];
+        var firstLetter = city.py[0];
+        if (!cityListGroup[firstLetter]) {
+            cityListGroup[firstLetter] = [];
+        }
+        cityListGroup[firstLetter].push(city);
+    }
+    var cityListGroupKeys = Object.keys(cityListGroup);
+    cityListGroupKeys.sort();
+    var cityListGroupHtml = template('template01', {
+        letters: cityListGroupKeys,
+        data: cityListGroup
+    });
+    console.log(cityListGroupKeys);
+    document.body.innerHTML = cityListGroupHtml;
+    // console.log(cityList);
+    console.log(cityListGroup);
+    setTimeout(function () {
+        var rightBox = document.querySelector('.right-box');
+        // 生成A-Z
+        var letters = document.createElement('ul');
+        letters.innerHTML =
+            '<li>A</li>' +
+            '<li>B</li>' +
+            '<li>C</li>' +
+            '<li>D</li>' +
+            '<li>E</li>' +
+            '<li>F</li>' +
+            '<li>G</li>' +
+            '<li>H</li>' +
+            '<li>I</li>' +
+            '<li>J</li>' +
+            '<li>K</li>' +
+            '<li>L</li>' +
+            '<li>M</li>' +
+            '<li>N</li>' +
+            '<li>O</li>' +
+            '<li>P</li>' +
+            '<li>Q</li>' +
+            '<li>R</li>' +
+            '<li>S</li>' +
+            '<li>T</li>' +
+            '<li>U</li>' +
+            '<li>V</li>' +
+            '<li>W</li>' +
+            '<li>X</li>' +
+            '<li>Y</li>' +
+            '<li>Z</li>';
+        letters.onclick = function getCity(e) {
+            console.log(e);
+            if (e.target.matches(".right-box>ul>li")) {
+                var li = e.target.innerHTML;
+                var offTop = document.querySelector('.' + li.toLowerCase()).offsetTop;
+                var app = document.querySelector("#app");
+                var timer = setInterval(function () {
+                    app.scrollTop += (offTop - app.scrollTop) / 10;
+                }, 10);
+                setTimeout(function () {
+                    clearInterval(timer);
+                }, 1000);
+            }
+        }
+        rightBox.appendChild(letters);
+
+    }, 1000);
+
+
+</script>
+
+</html>
