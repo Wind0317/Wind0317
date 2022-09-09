@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>090502</title>
+</head>
+
+<body>
+    <select name="" id="">
+        <option value="湖北省">湖北省</option>
+        <option value="湖南省">湖南省</option>
+        <option value="广东省">广东省</option>
+        <option value="江苏省">江苏省</option>
+    </select>
+    <button onclick="confirmInfo()">确定</button>
+</body>
+<script>
+    function confirmInfo() {
+        var a = document.querySelector("select").value;
+        window.opener.document.getElementById("aaa").value = a;
+        window.close();
+    }
+</script>
+
+</html>

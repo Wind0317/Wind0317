@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.container-box {
+    display: flex;
+    width: fit-content;
+    margin: auto;
+}
+
+.piano-item-white {
+    height: 400px;
+    width: 70px;
+    border: 2px solid black;
+    border-right: none;
+    border-radius: 0px 0px 10px 5px;
+    box-shadow: 10px -10px 5px lightgray inset;
+    position: relative;
+}
+
+.piano-item-white-last {
+    border-right: 2px solid black;
+}
+
+.piano-item-black {
+    width: 50px;
+    height: 230px;
+    background-color: #222222;
+    box-shadow: 10px -10px 5px #333333 inset;
+    border-radius: 0px 0px 5px 5px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    transform: translateX(50%);
+    z-index: 2;
+}
+
+.piano-item-white[data-status="1"] {
+    background-color: #ececec;
+}
+
+.piano-item-black[data-status="1"] {
+    background-color: gray;
+}

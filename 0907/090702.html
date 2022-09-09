@@ -1,0 +1,47 @@
+<!--
+ * @Author: Wind0317 52394193+Wind0317@users.noreply.github.com
+ * @Date: 2022-09-07 11:38:34
+ * @LastEditors: Wind0317 52394193+Wind0317@users.noreply.github.com
+ * @LastEditTime: 2022-09-07 13:48:06
+ * @FilePath: \0907\090702.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>090702</title>
+    <style>
+        #canvas01 {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas01" width="400" height="400"></canvas>
+    <script>
+        /** @type {HTMLCanvasElement}*/
+        var canvas = document.getElementById("canvas01");
+        var ctx = canvas.getContext("2d");
+        // 画一个田字格
+        ctx.beginPath();
+        ctx.moveTo(0, 200);
+        ctx.lineTo(400, 200);
+        ctx.moveTo(200, 0);
+        ctx.lineTo(200, 400); 
+        ctx.setLineDash([5, 5]);
+        ctx.stroke();
+
+        ctx.font = "300px 微软雅黑";    
+        ctx.textBaseline = "middle";
+        ctx.textAlign = "center";
+        ctx.fillText("W", 200, 200);  
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播案例</title>
+    <link rel="stylesheet" href="./swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <script type="text/html" id="template01">
+                {{each imgList item i}}
+                <div class="swiper-slide">
+                    <img src="{{item}}" alt="">
+                </div>
+                {{/each}}
+            </script>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- 如果需要滚动条 -->
+        <div class="swiper-scrollbar">
+
+        </div>
+    </div>
+    <script src="./swiper/swiper-bundle.min.js"></script>
+    <script src="./js/template-web.js"></script>
+    <script>
+        // 数据
+        var imgList = [
+            'img/item1.jpg',
+            'img/item2.jpg',
+            'img/item3.jpg',
+            'img/item4.jpg',
+        ]
+        // 渲染
+        var html = '';
+        html = template('template01', { imgList: imgList });
+        document.querySelector('.swiper-wrapper').innerHTML = html;
+        // 初始化
+        var mySwiper = new Swiper('.swiper', {
+            // direction: 'vertical', // 垂直切换选项
+            loop: true, // 循环模式选项
+            autoplay: true, // 自动播放
+
+            // 如果需要分页器
+            pagination: {
+                el: '.swiper-pagination',
+                dynamicBullets: true,//动态分页器
+                clickable: true, //点击分页器切换
+            },
+
+            // 如果需要前进后退按钮
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // 如果需要滚动条
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        })
+
+    </script>
+</body>
+
+</html>

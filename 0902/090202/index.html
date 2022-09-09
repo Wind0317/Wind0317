@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>audio的案例</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <audio src="assets/33.mp3" controls id="bgm"></audio>
+    <div class="container-box">
+        <div class="top-box">
+            <!-- 左边的图片 0不转,1转-->
+            <img src="img/33.jpg" alt="" data-ani-state="0" id="musicImg">
+            <!-- 右边的进度条 -->
+            <div class="right-box">
+                <div class="time-box">
+                    <span class="current-time-span">00:00</span>
+                    <span class="duration-span">04:20</span>
+                </div>
+                <div class="progress-box">
+                </div>
+            </div>
+        </div>
+        <div class="lrc-box">
+            <p class="lrc">这里是歌词</p>
+        </div>
+    </div>
+    <script src="js/lrc.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

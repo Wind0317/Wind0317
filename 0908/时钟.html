@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时钟</title>
+    <style>
+        #canvas {
+            margin: 100px;
+            border: 1px solid #000;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="400px" height="400px"></canvas>
+    <script>
+        // 画时钟
+        /** @type {HTMLCanvasElement} */
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var width = canvas.width;
+        var height = canvas.height;
+        var img = new Image();
+        img.src = './w08.jpg';
+        var r = canvas.width / 2;
+        var t = Math.PI * 2;
+        ctx.translate(width / 2, height / 2);
+        function drawClock() {
+            ctx.save();
+            // 画外圆
+            ctx.beginPath();
+            ctx.arc(0, 0, r - 5, 0, t, false);
+            ctx.lineWidth = 10;
+            ctx.stroke();
+            // 画刻度
+            for (var i = 0; i < 60; i++) {
+                ctx.beginPath();
+                var rad = t / 60 * i;
+                var x = Math.cos(rad) * (r - 20);
+                var y = Math.sin(rad) * (r - 20);
+                if (i % 5 == 0) {
+                    ctx.fillStyle = 'black';
+                    ctx.arc(x, y, 5, 0, t, false);
+                } else {
+                    ctx.fillStyle = 'lightgray';
+                    ctx.arc(x, y, 5, 0, t, false);
+                }
+                ctx.fill();
+            }
+            // 画数字
+            var numbers = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2];
+            ctx.font = '24px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = 'black';
+            for (var i = 0; i < numbers.length; i++) {
+                var rad = t / 12 * i;
+                var x = Math.cos(rad) * (r - 40);
+                var y = Math.sin(rad) * (r - 40);
+                ctx.fillText(numbers[i], x, y);
+            }
+            ctx.restore();
+        }
+        // 画时针
+        function drawHour(hour, minute) {
+            ctx.save();
+            ctx.rotate(2 * Math.PI / 12 * hour + 2 * Math.PI / 12 / 60 * minute);
+            ctx.beginPath();
+            ctx.strokeStyle = 'black';
+            ctx.moveTo(0, 5);
+            ctx.lineTo(0, -(width / 2) + 120);
+            ctx.lineWidth = 7;
+            ctx.lineCap = "round";
+            ctx.stroke();
+            ctx.restore();
+        }
+        // 画分针
+        function drawMinute(minute, second) {
+            ctx.save();
+            ctx.rotate(2 * Math.PI / 60 * minute + 2 * Math.PI / 60 / 60 * second);
+            ctx.beginPath();
+            ctx.strokeStyle = 'black';
+            ctx.moveTo(0, 5);
+            ctx.lineTo(0, -(width / 2) + 100);
+            ctx.lineWidth = 4;
+            ctx.lineCap = "round";
+            ctx.stroke();
+            ctx.restore();
+        }
+        // 画秒针
+        function drawSecond(second) {
+            ctx.save();
+            ctx.rotate(2 * Math.PI / 60 * second);
+            ctx.beginPath();
+            ctx.strokeStyle = 'red';
+            ctx.moveTo(0, 10);
+            ctx.lineTo(0, -(width / 2) + 60);
+            ctx.lin
+            ctx.lineWidth = 3;
+            ctx.lineCap = "round";
+            ctx.stroke();
+            ctx.restore();
+        }
+        function drawDot() {
+            ctx.beginPath();
+            ctx.fillStyle = 'white';
+            ctx.arc(0, 0, 5, 0, t, false);
+            ctx.fill();
+        }
+        setInterval(function () {
+            ctx.clearRect(-(width / 2), -(height / 2), width, height);
+            ctx.globalAlpha = 0.5;
+            ctx.drawImage(img, -(width / 2), -(height / 2), width, height);
+            ctx.globalAlpha = 1;
+            var now = new Date();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            drawClock();
+            drawHour(hour, minute);
+            drawMinute(minute, second);
+            drawSecond(second);
+            drawDot();
+        }, 1000);
+
+        // drawClock();
+    </script>
+</body>
+
+</html>

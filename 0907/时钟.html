@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时钟</title>
+    <style>
+        #canvas {
+            margin: 100px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="400px" height="400px"></canvas>
+    <script>
+        // 画时钟
+        /** @type {HTMLCanvasElement} */
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var width = canvas.width;
+        var height = canvas.height;
+        ctx.arc(width / 2, height / 2, 196, 0, 2 * Math.PI, false);
+        ctx.lineWidth = 10;
+        ctx.stroke();
+
+        // 画刻度
+        // ctx.beginPath();
+        // ctx.arc(width / 2, height / 2, 180, 0, 2 * Math.PI, false);
+        // ctx.setLineDash([1, (2 * Math.PI * 180 / 60) - 1]);
+        // ctx.lineWidth = 10;
+        // ctx.lineCap = 'round';
+        // ctx.strokeStyle = '#ccc';
+        // ctx.stroke();
+
+        // ctx.beginPath();
+        // ctx.arc(width / 2, height / 2, 180, 0, 2 * Math.PI, false);
+        // ctx.setLineDash([1, (2 * Math.PI * 180 / 12) - 1]);
+        // ctx.lineWidth = 10;
+        // ctx.lineCap = 'round';
+        // ctx.strokeStyle = '#000';
+        // ctx.stroke();
+
+        for (var i = 0; i < 60; i++) {
+            var rad = 2 * Math.PI / 60 * i;
+            var x = Math.cos(rad) * 180 + width / 2;
+            var y = Math.sin(rad) * 180 + height / 2;
+            ctx.beginPath();
+            if (i % 5 == 0) {
+                ctx.arc(x, y, 5, 0, 2 * Math.PI, false);
+                ctx.fillStyle = '#000';
+            } else {
+                ctx.arc(x, y, 5, 0, 2 * Math.PI, false);
+                ctx.fillStyle = '#ccc';
+            }
+            ctx.fill();
+        }
+
+        // 画数字
+        ctx.fillStyle = '#000';
+        ctx.font = 'bold 30px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        var numbers = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2]
+        for (var i = 0; i < 12; i++) {
+            var rad = 2 * Math.PI / 12 * i;
+            var x = Math.cos(rad) * 150 + width / 2;
+            var y = Math.sin(rad) * 150 + height / 2;
+            ctx.fillText(numbers[i], x, y);
+        }
+    </script>
+</body>
+
+</html>

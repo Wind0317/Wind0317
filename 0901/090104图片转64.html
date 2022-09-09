@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" name="file" id="file">
+    <img src="" alt="">
+    <script>
+        // 读取img中的图片并转换为base64
+        var file = document.querySelector("#file");
+        file.onchange = function () {
+            console.dir(file);
+            var imgMsg = file.files[0]; //获取传入的图片信息
+            var render = new FileReader(); //实例化FileReader
+            render.readAsDataURL(imgMsg); //转化base64
+            // console.log(render.result); 此时访问不到result，得到的结果是null
+            render.onloadend = function () {
+                document.querySelector("img").src = render.result;
+            }
+        };
+    </script>
+
+</body>
+
+</html>

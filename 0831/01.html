@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0831-01</title>
+</head>
+
+<body>
+    <script>
+        var str = "dgfhfgh254.45bhku289fgdhdy675gfh"
+        // 使用exec提取并遍历
+        var reg = /(\d+)(\.\d+)?/g;
+        var result = reg.exec(str);
+        var arr = [];
+        while (result) {
+            console.log(result);
+            arr.push(parseInt(result[1]));
+            result = reg.exec(str);
+        }
+        console.log(arr);
+    </script>
+</body>
+
+</html>

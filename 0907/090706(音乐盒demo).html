@@ -1,0 +1,69 @@
+<!--
+ * @Author: Wind0317 52394193+Wind0317@users.noreply.github.com
+ * @Date: 2022-09-07 17:13:22
+ * @LastEditors: Wind0317 52394193+Wind0317@users.noreply.github.com
+ * @LastEditTime: 2022-09-07 20:56:22
+ * @FilePath: \0907\090706(音乐盒demo).html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        /** @type {HTMLCanvasElement} */
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        canvas.width = 800;
+        canvas.height = 400;
+        var gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        gradient.addColorStop("0", "red");
+        gradient.addColorStop("0.5", "yellow");
+        gradient.addColorStop("1.0", "#00E800");
+        var lineWidth = 40;
+        // ctx.beginPath();
+        // ctx.moveTo(20, 0);
+        // ctx.lineTo(20, canvas.height);
+        // ctx.lineWidth = 50;
+        // ctx.strokeStyle = gradient;
+        // ctx.setLineDash([10, 4]);
+        // ctx.stroke();
+        // 音量条
+        setInterval(function () {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var x =70;
+            for (var i = 0; i < canvas.width / lineWidth; i++) {
+                var y = Math.random() * canvas.height;
+                ctx.beginPath();
+                ctx.moveTo(x, canvas.height);
+                ctx.lineTo(x, y);
+                // ctx.rotate(Math.PI / 180 * 1);
+                ctx.lineWidth = 40;
+                ctx.strokeStyle = gradient;
+                ctx.setLineDash([10, 4]);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.strokeStyle = "red";
+                ctx.moveTo(x, y - 10);
+                ctx.lineTo(x, y - 20);
+                ctx.stroke();
+                x = x + lineWidth + 10;
+            }
+        }, 100);
+    </script>
+</body>
+
+</html>

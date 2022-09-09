@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>090705</title>
+    <style>
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .box {
+            position: relative;
+            width: 200px;
+            height: 50px;
+            border: 2px solid black;
+            text-align: center;
+            line-height: 50px;
+            font-size: 30px;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <canvas id="canvas"></canvas>
+        没中奖
+    </div>
+    <script>
+        /** @type {HMTLCanvsElement} */
+        const canvas = document.getElementById('canvas');
+        /** @type {CanvasRenderingContext2D} */
+        const ctx = canvas.getContext('2d');
+        canvas.width = 200;
+        canvas.height = 50;
+        ctx.fillStyle = "lightgrey";
+        ctx.fillRect(0, 0, 200, 50);
+        const box = document.querySelector('.box');
+        // 刮刮乐
+        document.addEventListener('mousedown', function (e) {
+            canvas.addEventListener('mousemove', move);
+        });
+        function move(e) {
+            // console.log(e);
+            var x = e.offsetX;
+            var y = e.offsetY;
+            ctx.clearRect(x, y, 20, 20);
+        }
+        document.addEventListener('mouseup', function (e) {
+            canvas.removeEventListener("mousemove", move);
+        });
+    </script>
+</body>
+
+</html>
