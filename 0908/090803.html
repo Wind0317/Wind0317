@@ -1,0 +1,61 @@
+<!--
+ * @Author: 
+ * @Date: 2022-09-08 09:55:57
+ * @LastEditors: Wind0317 52394193+Wind0317@users.noreply.github.com
+ * @LastEditTime: 2022-09-08 11:15:04
+ * @FilePath: \0908\090803.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>090803</title>
+    <style>
+        #canvas {
+            border: 2px solid black;
+        }
+
+        img {
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <img src="01.webp" alt="">
+    <script>
+        /** @type {HTMLCanvasElement} */
+        var canvas = document.querySelector("#canvas");
+        var ctx = canvas.getContext("2d");
+        var img = document.querySelector("img");
+        img.onload = function () {
+            canvas.width = img.clientWidth;
+            canvas.height = img.clientHeight;
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            console.log(imgData);
+            var data = imgData.data;
+            for (var i = 0; i < data.length; i += 4) {
+                var r = data[i];
+                var g = data[i + 1];
+                var b = data[i + 2];
+                var a = data[i + 3];
+                if (g > 230 && r < 50 && b < 50) {
+                    data[i] = 255;
+                    data[i + 1] = 0;
+                    data[i + 2] = 0;
+                }
+            }
+            ctx.putImageData(imgData, 0, 0);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 如何将类数组转换成数组
+        
+        // var obj={
+        //     0:1,
+        //     1:2,
+        //     2:3,
+        //     length:3
+        // }
+        // console.log(Array.prototype.slice.call(obj));//[1,2,3]
+        // console.log(Array.from(obj)); // [1,2,3]
+
+        function f(){
+            return f
+        }
+        console.log(Object.prototype.toString.call(new f()));//[object Function]
+        console.log(Object.prototype.toString.call(f));//[object Function]
+    </script>
+</body>
+</html>

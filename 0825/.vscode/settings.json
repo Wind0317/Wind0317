@@ -1,0 +1,6 @@
+{
+    "editor.fontFamily": "Fira Code",    // 字体名称
+    "editor.fontLigatures": true,    // 是否为连体字
+    "editor.fontSize": 14,    // 字体大小
+    "editor.fontWeight": "normal"    // 控制字体粗细
+}

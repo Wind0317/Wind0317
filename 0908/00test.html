@@ -1,0 +1,45 @@
+<!--
+ * @Author: Wind0317 52394193+Wind0317@users.noreply.github.com
+ * @Date: 2022-09-08 15:07:46
+ * @LastEditors: Wind0317 52394193+Wind0317@users.noreply.github.com
+ * @LastEditTime: 2022-09-08 15:24:08
+ * @FilePath: \0908\00test.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        canvas.width = 500;
+        canvas.height = 500;
+        ctx.moveTo(canvas.width / 2, canvas.height / 2);
+        ctx.lineTo(100, 100);
+        ctx.stroke();
+
+        // ctx.rotate(2 * Math.PI / 12 * 2);
+        setInterval(() => {
+            ctx.rotate(2 * Math.PI / 60);
+            ctx.moveTo(canvas.width / 2, canvas.height / 2);
+            ctx.lineTo(0, canvas.width / 2);
+            ctx.stroke();
+        }, 500);
+    </script>
+</body>
+
+</html>

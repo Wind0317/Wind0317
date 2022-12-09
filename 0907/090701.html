@@ -1,0 +1,62 @@
+<!--
+ * @Author: Wind0317 52394193+Wind0317@users.noreply.github.com
+ * @Date: 2022-09-07 09:45:00
+ * @LastEditors: Wind0317 52394193+Wind0317@users.noreply.github.com
+ * @LastEditTime: 2022-09-07 11:36:03
+ * @FilePath: \0907\090701.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>090701</title>
+    <style>
+        #canvas01 {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas01" width="400" height="400"></canvas>
+    <script>
+        /** @type {HTMLCanvasElement}*/
+        var canvas = document.getElementById("canvas01");
+        var ctx = canvas.getContext("2d");
+        ctx.font = "30px Arial";
+        ctx.beginPath();
+        ctx.moveTo(100, 0);
+        ctx.lineTo(0, 400);
+        ctx.strokeStyle = "red";
+
+        ctx.moveTo(100, 0);
+        ctx.lineTo(300, 0);
+
+        ctx.moveTo(300, 0);
+        ctx.lineTo(400, 400);
+
+        ctx.moveTo(0, 400);
+        ctx.lineTo(400, 400);
+        ctx.closePath();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(200, 200);
+        ctx.strokeStyle = "black";
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(200, 200);
+        ctx.lineTo(200, 400);
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 5;
+        ctx.lineCap="round"
+        ctx.stroke();
+    </script>
+</body>
+
+</html>

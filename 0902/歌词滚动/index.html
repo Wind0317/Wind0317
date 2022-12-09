@@ -1,0 +1,41 @@
+<!--
+ * @Author: Wind0317 52394193+Wind0317@users.noreply.github.com
+ * @Date: 2022-09-02 08:57:23
+ * @LastEditors: Wind0317 52394193+Wind0317@users.noreply.github.com
+ * @LastEditTime: 2022-09-09 16:33:35
+ * @FilePath: \歌词滚动\index.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="music">
+        <audio src="assets/music1.mp3" controls id="musicplay"></audio>
+    </div>
+    <div class="lrc-box">
+        <div class="lrc-inner-box">
+
+        </div>
+    </div>
+    <script type="text/html" id="template01">
+        {{each lrcArr item index}}
+        <p class="lrc-item">{{item}}</p>
+        {{/each}}
+    </script>
+    <script src="./js/music1lrc.js"></script>
+    <script src="./js/template-web.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

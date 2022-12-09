@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .box {
+            width: 639px;
+            height: 426px;
+            margin: auto;
+            border: 1px solid black;
+            cursor: url("img/left.png"), auto;
+            position: relative;
+        }
+
+        .box img {
+            position: absolute;
+            opacity: 0;
+            transition: all 0.5s linear;
+        }
+
+        .ul1 {
+            display: flex;
+            flex-direction: row;
+            position: absolute;
+            z-index: 6;
+            bottom: 20px;
+            left: calc(639px / 2 - 100px);
+            cursor: default;
+            height: 30px;
+        }
+
+        .ul1 li {
+            margin-left: 20px;
+            width: 30px;
+            aspect-ratio: 1/1;
+            background-color: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .hover {
+            background-color: #456 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="img/item1.jpg" alt="">
+        <img src="img/item2.jpg" alt="">
+        <img src="img/item3.jpg" alt="">
+        <img src="img/item4.jpg" alt="">
+        <ul class="ul1" onclick="event.stopPropagation()">
+            <li onclick="obj.data.currentIndex=0"></li>
+            <li onclick="obj.data.currentIndex=1"></li>
+            <li onclick="obj.data.currentIndex=2"></li>
+            <li onclick="obj.data.currentIndex=3"></li>
+        </ul>
+    </div>
+    <script>
+        var obj = {
+            dom: {
+                box: document.querySelector('.box'),
+                imgs: document.querySelectorAll('.box img'),
+                lis: document.querySelectorAll('.ul1 li')
+            },
+            data: {
+                _currentIndex: -1,
+            },
+            binEvent: function () {
+                var that = this;
+                this.dom.box.addEventListener('mousemove', function (event) {
+                    if (event.offsetX > that.dom.box.offsetWidth / 2) {
+                        that.dom.box.style.cursor = 'url("img/right.png"), auto';
+                    } else {
+                        that.dom.box.style.cursor = 'url("img/left.png"), auto';
+                    }
+                })
+                this.dom.box.addEventListener('click', function (event) {
+                    if (event.offsetX > that.dom.box.offsetWidth / 2) {
+                        that.data.currentIndex++;
+                    } else {
+                        that.data.currentIndex--;
+                    }
+                })
+                this.dom.lis
+
+            }
+        }
+        Object.defineProperty(obj.data, "currentIndex", {
+            get: function () {
+                return this._currentIndex;
+            },
+            set: function (newValue) {
+                if (newValue >= obj.dom.imgs.length) {
+                    this._currentIndex = 0;
+                } else if (newValue < 0) {
+                    this._currentIndex = obj.dom.imgs.length - 1;
+                } else {
+                    this._currentIndex = newValue;
+                }
+                for (var i = 0; i < obj.dom.imgs.length; i++) {
+                    obj.dom.imgs[i].style.opacity = 0;
+                }
+                obj.dom.imgs[this.currentIndex].style.opacity = 1;
+            }
+        })
+        obj.binEvent()
+
+    </script>
+</body>
+
+</html>

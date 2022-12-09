@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0830-02</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+            overflow: auto;
+            border: 5px solid #000;
+            margin: 100px;
+            position: relative;
+            transition: all 1s ease;
+        }
+
+        .ul1 {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1">
+        <ul class="ul1">
+            <li>第1项</li>
+            <li>第2项</li>
+            <li>第3项</li>
+            <li>第4项</li>
+            <li>第5项</li>
+            <li>第6项</li>
+            <li>第7项</li>
+            <li>第8项</li>
+            <li>第9项</li>
+            <li>第10项</li>
+            <li>第11项</li>
+            <li>第12项</li>
+            <li>第13项</li>
+            <li>第14项</li>
+            <li>第15项</li>
+            <li>第16项</li>
+            <li>第17项</li>
+            <li>第18项</li>
+            <li>第19项</li>
+            <li>第20项</li>
+        </ul>
+    </div>
+    <button style="margin-left: 100px;">滚动到第</button>
+    <input type="text" id="x">项
+    <script>
+        // 滚动大小
+        var div1 = document.getElementById('div1');
+        document.querySelector('button').onclick = function () {
+            // 滚动条实现滚动动画效果
+            var x = document.querySelector(`.ul1>li:nth-child(${document.querySelector('#x').value})`).offsetTop;
+            console.log(x);
+            var timer = setInterval(function () {
+                div1.scrollTop += (x - div1.scrollTop) / 10;
+            }, 10);
+            setTimeout(function () {
+                clearInterval(timer);
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>

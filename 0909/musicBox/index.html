@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐盒</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <img src="./img/menu.png" alt="" id="menu">
+    <div class="left-menu" data-show="0">
+        <div class="btn-box">
+            <button type="button" class="btn">静音播放</button>
+            <button type="button" class="btn">本地打开</button>
+        </div>
+        <ul class="music-list">
+            <script type="text/html" id="template">
+                {{each data item index}}
+                <li class="music-list-item" onclick="musicBoxControl.data.currentIndex={{index}}">
+                    <span style="padding: 0 5px;">{{index+1}}.</span>
+                    <img src="{{BASEURL + item.picPath}}" alt="">
+                    <span>{{item.musicName}}</span>
+                </li>
+                {{/each}}
+            </script>
+        </ul>
+    </div>
+    <div class="right-box">
+        <div class="container-box">
+            <div class="music">
+                <audio src="" controls id="musicplay"></audio>
+            </div>
+            <div class="lrc-box">
+                <div class="lrc-inner-box">
+                </div>
+            </div>
+            <script type="text/html" id="template01">
+                {{each lrcArr item index}}
+                <p class="lrc-item">{{item}}</p>
+                {{/each}}
+            </script>
+            <div class="music-control">
+                <div class="current-time-box">00:00</div>
+                <div class="progress"></div>
+                <div class="duration-box">04:32</div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/template-web.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

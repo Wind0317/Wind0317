@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .video1 {
+            width: 400px;
+            aspect-ratio: 1/1;
+            border: 1px dashed #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <video src="" class="video1"></video>
+    <hr>
+    <button onclick="openVideo()">开启摄像头</button>
+    <button onclick="takePhoto()">点击截图</button>
+    <script>
+        console.log(navigator);
+        function openVideo() {
+            var video1 = document.querySelector(".video1");
+            navigator.getUserMedia({
+                video: true,
+                audio: false
+            }, function (stream) {
+                // 获取到视频流
+                console.log(stream);
+                video1.srcObject = stream;
+                video1.play();
+            }, function (err) {
+                // 获取视频流失败
+                console.log(err);
+            })
+        }
+        // 摄像头截图
+        function takePhoto() {
+            var video1 = document.querySelector(".video1");
+            var canvas = document.createElement("canvas");
+            canvas.width = video1.videoWidth;
+            canvas.height = video1.videoHeight;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(video1, 0, 0);
+            var img = document.createElement("img");
+            img.src = canvas.toDataURL("image/png");
+            document.body.appendChild(img);
+        }
+    </script>
+</body>
+
+</html>

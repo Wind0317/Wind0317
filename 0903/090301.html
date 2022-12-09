@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>090301
+    </title>
+</head>
+
+<body>
+    <input type="file">
+    <audio id="audio1" controls></audio>
+    <script>
+        const audio = document.querySelector('#audio1');
+        const file = document.querySelector('input[type=file]');
+        file.addEventListener('change', function () {
+            console.log(this.files);
+            if (this.files.length > 0) {
+                if ((/audio/).test(this.files[0].type)) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(this.files[0]);
+                    reader.onload = function () {
+                        console.log(reader.result);
+                        audio.src = reader.result;
+                    }
+                } else {
+                    alert('请选择mp3格式的音频文件');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .box1 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .box1 button {
+            height: 40px;
+            margin: 10px;
+        }
+
+        .sel1,
+        .sel2 {
+            width: 100px;
+            height: 300px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <select class='sel1' multiple>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+
+        <div class="box1">
+            <button type="button" onclick="toRight()">&gt;</button>
+            <button type="button" onclick="toLeft()">&lt;</button>
+            <button type="button" onclick="toRightAll()">&gt;&gt;</button>
+            <button type="button" onclick="toLeftAll()">&lt;&lt;</button>
+        </div>
+
+        <select class="sel2" multiple>
+        </select>
+    </div>
+    <script>
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!--
+ * @Author: Wind0317 52394193+Wind0317@users.noreply.github.com
+ * @Date: 2022-09-07 14:42:24
+ * @LastEditors: Wind0317 52394193+Wind0317@users.noreply.github.com
+ * @LastEditTime: 2022-09-07 16:15:15
+ * @FilePath: \0907\img01.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>imghtml</title>
+    <style>
+        canvas {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="img01.png" alt="">
+    <video controls></video>
+    <canvas id="canvas"></canvas>
+    <button id="btn1">开启摄像头</button>
+    <button onclick="takePhoto()" id="btn2">截图</button>
+    <input type="file" name="" id="file" >
+</body>
+<script>
+    // 绘制图片
+    /** @type {HTMLImageElement}*/
+    var img1 = document.querySelector('img');
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+    // img1.onload = function () {
+    //     canvas.width = img1.width;
+    //     canvas.height = img1.height;
+    //     ctx.drawImage(img1, 0, 0, img1.width / 2, img1.height / 2);
+    // }
+    // 绘制视频
+    var btn1 = document.querySelector('#btn1');
+    var video = document.querySelector("video");
+    var file = document.querySelector('#file');
+    file.onchange = function () {
+        var file = this.files[0];
+        var url = URL.createObjectURL(file);
+        video.src = url;
+        video.play();
+    }
+    // 获取摄像头
+    btn1.onclick = function () {
+        // navigator.getUserMedia({
+        //     video: true,
+        //     audio: false
+        // }, function (stream) {
+        //     video.srcObject = stream;
+        //     video.play();
+        // }, function (err) {
+        //     console.log(err);
+        // })
+
+        // webRTC
+    }
+    video.onloadedmetadata = function () {
+        canvas.width = video.clientWidth;
+        canvas.height = video.clientHeight;
+    }
+    function takePhoto() {
+        ctx.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
+        // 下载图片
+        // var img = canvas.toDataURL("image/png");
+        // var a = document.createElement('a');
+        // a.href = img;
+        // // 生成随机的文件名
+        // var filename = Math.random().toString(36).substring(2) + '.png';
+        // a.download = filename;
+        // a.click();
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 296px;
+            height: 89px;
+            font-size: 30px;
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .inner-box {
+            width: 592px;
+            height: 89px;
+            background-image: url("微信图片_20220827160031.jpg");
+            background-repeat: repeat-x;
+            background-size: auto;
+            color: #fff;
+            animation: translate-ani 10s linear infinite paused;
+        }
+
+        @keyframes translate-ani {
+            0% {
+                background-position-x: 296px;
+            }
+
+            50% {
+                background-position-x: 0px;
+            }
+
+            100% {
+                background-position-x: -296px;
+            }
+        }
+
+        span {
+            position: absolute;
+            left: 50px;
+            top: 30px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <span>BiaoGege</span>
+        <div class="inner-box">
+        </div>
+    </div>
+    <script>
+        var box = document.querySelector('.box');
+        var flag = true;
+        box.onmouseover = function () {
+            if (flag) {
+                flag = false;
+                box.querySelector('.inner-box').style.animationPlayState = 'running';
+            } else {
+                flag = true;
+                box.querySelector('.inner-box').style.animationPlayState = 'paused';
+            }
+        }
+    </script>
+</body>
+
+</html>

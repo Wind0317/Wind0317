@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>090503</title>
+</head>
+
+<body>
+    <h1>a</h1>
+    <script src="./node_modules/js-cookie/dist/js.cookie.js"></script>
+    <script>
+        // 设置cookie 过期时间一天
+        function setCookie(name, value, day) {
+            var d = new Date();
+            d.setDate(d.getDate() + day);
+            document.cookie = name + "=" + value + ";expires=" + d;
+        }
+        // 获取cookie
+        function getCookie(name) {
+            return document.cookie.match(new RegExp(`/(?<=${name}\=).*?(?=;)/g`));
+        }
+        // 删除cookie
+        function removeCookie(name) {
+            setCookie(name, 1, -1);
+        }
+        // 设置cookie
+        setCookie("a", "aaa", 1);
+        setCookie('b', 'bbb', 2);
+        console.log(getCookie('a'));
+    </script>
+</body>
+
+</html>

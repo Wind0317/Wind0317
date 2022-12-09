@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城市选择</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        #app {
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+        }
+
+        #app>ul {
+            margin-top: 1px;
+            width: 100%;
+            background-color: #e7e7e8;
+        }
+
+        #app>ul>li:first-child {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            height: 40px;
+            line-height: 40px;
+            text-indent: 20px;
+            background-color: #dededf;
+        }
+
+        #app>ul>li+li {
+            margin-left: 15px;
+            height: 30px;
+            width: 80%;
+            line-height: 30px;
+            margin-top: 10px;
+            border-bottom: 1px solid #c1c0c6;
+        }
+
+        .right-box {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 20px;
+            margin: auto;
+            font-size: 16px;
+            height: fit-content;
+        }
+
+        .right-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: #8b8b8c;
+        }
+
+        .right-box ul li {
+            height: 30px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/html" id="template01">
+        <div id="app">
+            <div class="right-box">
+                <ul onclick="jumpCity(event)">
+                    {{each data item_data letter}}
+                    <li>{{letter.toUpperCase()}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+            <!-- 因为这里是对象，所以最后一个变成对象的属性 -->
+        {{each data item_data letter}}
+        <ul class="{{letter}}">
+            <li>{{letter.toUpperCase()}}</li>
+            {{each item_data item index3}}
+            <li>{{item.nm}}</li>
+            {{/each}}
+        </ul>
+        {{/each}}
+
+    </script>
+</body>
+
+<script src="./js/template-web.js"></script>
+<script src="./js/cityList.js"></script>
+<script>
+    // 首字母排序
+    cityList.sort(function (a, b) {
+        return a.py[0].localeCompare(b.py[0]);
+    });
+    // 将相同首字母的城市放在一起
+    var cityListGroup = {};
+    for (var i = 0; i < cityList.length; i++) {
+        var city = cityList[i];
+        var firstLetter = city.py[0];
+        if (!cityListGroup[firstLetter]) {
+            cityListGroup[firstLetter] = [];
+        }
+        // 将城市放在相同首字母的数组中
+        cityListGroup[firstLetter].push(city);
+    }
+    var cityListGroupHtml = template('template01', {
+        data: cityListGroup
+    });
+    document.body.innerHTML = cityListGroupHtml;
+    console.log(cityListGroup);
+    function jumpCity(e) {
+        // console.log(e);
+        if (e.target.matches(".right-box>ul>li")) {
+            var li = e.target.innerHTML;
+            console.log(li);
+            var offTop = document.querySelector('.' + li.toLowerCase()).offsetTop;
+            var app = document.querySelector("#app");
+            var timer = setInterval(function () {
+                app.scrollTop += (offTop - app.scrollTop) / 10;
+            }, 10);
+            setTimeout(function () {
+                clearInterval(timer);
+            }, 1000);
+        }
+    }
+</script>
+
+</html>
